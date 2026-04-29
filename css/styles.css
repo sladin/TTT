@@ -116,8 +116,8 @@ ul { list-style: none; }
   inset: 0;
   background-image: url('../images/interior.jpg');
   background-size: cover;
-  background-position: center top;
-  filter: brightness(0.68);
+  background-position: center 65%;
+  filter: brightness(0.72) saturate(1.15) sepia(0.18);
 }
 
 /* film grain overlay */
@@ -134,7 +134,10 @@ ul { list-style: none; }
 .hero-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 25%, rgba(15,14,10,0.88) 100%);
+  background:
+    linear-gradient(to bottom, transparent 20%, rgba(15,14,10,0.82) 100%),
+    radial-gradient(ellipse at 30% 35%, rgba(217,123,171,0.22) 0%, transparent 60%),
+    linear-gradient(160deg, rgba(210,155,80,0.18) 0%, transparent 55%);
 }
 
 .hero-content {
