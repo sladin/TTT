@@ -1,0 +1,195 @@
+<!--
+  Third Time Together — Full Hero Code Block
+  Paste into Squarespace: Edit Page → Add Block → Code → paste this.
+  Set the section padding to 0 and hide the section title if visible.
+-->
+<style>
+  .ttt-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+  }
+
+  .ttt-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://raw.githubusercontent.com/sladin/TTT/main/images/interior.jpg');
+    background-size: cover;
+    background-position: center 65%;
+    filter: brightness(0.72) saturate(1.15) sepia(0.18);
+  }
+
+  .ttt-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 20%, rgba(15,14,10,0.82) 100%),
+      radial-gradient(ellipse at 30% 35%, rgba(217,123,171,0.22) 0%, transparent 60%),
+      linear-gradient(160deg, rgba(210,155,80,0.18) 0%, transparent 55%);
+  }
+
+  .ttt-hero-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    opacity: 0.22;
+    pointer-events: none;
+  }
+
+  .ttt-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 2.5rem;
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  .ttt-hero-title {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.95;
+    color: #fff;
+    margin: 0 0 0.5rem;
+    padding: 0;
+  }
+
+  .ttt-hero-wave {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: 16px;
+    margin: 0 0 0.75rem;
+  }
+
+  .ttt-hero-location {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(11px, 1.4vw, 13px);
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+  }
+
+  .ttt-hero-tagline {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    color: rgba(255,255,255,0.88);
+    font-size: clamp(16px, 2.2vw, 22px);
+    max-width: 700px;
+    line-height: 1.55;
+    margin: 0 0 2rem;
+  }
+
+  .ttt-hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .ttt-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: clamp(12px, 1.5vw, 14px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 44px;
+    text-decoration: none;
+    border: 2px solid transparent;
+  }
+
+  .ttt-btn-primary {
+    background: #fff;
+    color: #0F0E0A;
+    border-color: #fff;
+  }
+  .ttt-btn-primary:hover { background: #EDEAD9; border-color: #EDEAD9; color: #0F0E0A; }
+
+  .ttt-btn-outline {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.6);
+  }
+  .ttt-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); color: #fff; }
+
+  .ttt-btn-ghost {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.25);
+  }
+  .ttt-btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  .ttt-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    z-index: 2;
+    animation: tttBounce 2.4s ease-in-out infinite;
+  }
+
+  .ttt-scroll-line {
+    display: block;
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.35);
+  }
+
+  @keyframes tttBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0);   opacity: 0.6; }
+    50%       { transform: translateX(-50%) translateY(7px); opacity: 1;   }
+  }
+
+  @media (max-width: 600px) {
+    .ttt-hero-content { padding: 2rem 1.5rem; }
+    .ttt-hero-buttons { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<div class="ttt-hero">
+  <div class="ttt-hero-bg"></div>
+  <div class="ttt-hero-overlay"></div>
+  <div class="ttt-hero-grain"></div>
+
+  <div class="ttt-hero-content">
+    <h1 class="ttt-hero-title">Third Time Together</h1>
+
+    <svg class="ttt-hero-wave" viewBox="0 0 600 18" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0,9 Q25,0 50,9 T100,9 T150,9 T200,9 T250,9 T300,9 T350,9 T400,9 T450,9 T500,9 T550,9 T600,9"
+            fill="none" stroke="#D97BAB" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+
+    <p class="ttt-hero-location">Kendall Square · Cambridge, MA</p>
+
+    <p class="ttt-hero-tagline">Your neighborhood all-day café for the intentionally adventurous, celebrating cultures and creating rituals through made from scratch ice cream, cross-cultural flavors, and meals worth gathering for.</p>
+
+    <div class="ttt-hero-buttons">
+      <!-- Replace # with your Square pickup URL -->
+      <a href="#" class="ttt-btn ttt-btn-primary">Order Pickup →</a>
+      <!-- Replace # with your Square delivery URL -->
+      <a href="#" class="ttt-btn ttt-btn-outline">Order Delivery →</a>
+      <a href="/menu" class="ttt-btn ttt-btn-ghost">View Menu</a>
+    </div>
+  </div>
+
+  <div class="ttt-scroll" aria-label="Scroll to explore">
+    <span class="ttt-scroll-line"></span>
+    <svg width="18" height="10" viewBox="0 0 18 10" fill="none"
+         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M1 1L9 9L17 1" stroke="rgba(255,255,255,0.55)"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</div>
