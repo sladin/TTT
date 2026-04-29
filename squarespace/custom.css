@@ -1,0 +1,239 @@
+/*
+  Third Time Together — Squarespace Custom CSS
+  Paste this entire file into: Design → Custom CSS
+  ------------------------------------------------
+  Requires Business plan or higher for Custom CSS.
+  Goldplay fonts must be hosted — see FONTS note below.
+*/
+
+/* =====================
+   FONTS
+   Upload your .otf files to a CDN (e.g. GitHub raw, Cloudinary)
+   and replace the src URLs below.
+   OR: use Poppins from Google Fonts as a fallback (see bottom of file).
+===================== */
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-RegularIt.otf') format('opentype');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-Black.otf') format('opentype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-BlackIt.otf') format('opentype');
+  font-weight: 900; font-style: italic; font-display: swap;
+}
+
+/* =====================
+   BRAND COLORS (CSS variables)
+===================== */
+:root {
+  --cream:     #EDEAD9;
+  --black:     #0F0E0A;
+  --pink:      #D97BAB;
+  --mauve:     #9B7FB6;
+  --blue:      #6B7FC4;
+  --warm-gray: #8C8476;
+}
+
+/* =====================
+   GLOBAL FONT OVERRIDE
+===================== */
+body,
+.sqsrte-large,
+.sqsrte-small,
+p, li, label, input, textarea, button {
+  font-family: 'Goldplay', 'Poppins', system-ui, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Goldplay', 'Poppins', system-ui, sans-serif !important;
+}
+
+/* =====================
+   SITE BACKGROUND
+===================== */
+body { background-color: var(--cream) !important; }
+
+/* =====================
+   HEADER / NAV
+===================== */
+/* Makes the nav cream-colored */
+.header-nav,
+.header-announcement-bar-wrapper,
+.Announcement,
+header.Header {
+  background-color: var(--cream) !important;
+  border-bottom: 1px solid rgba(15,14,10,0.1) !important;
+}
+
+/* Nav links */
+.header-nav-item a,
+.header-nav-folder-title {
+  font-family: 'Goldplay', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.04em !important;
+  color: var(--warm-gray) !important;
+  text-transform: none !important;
+}
+.header-nav-item a:hover { color: var(--black) !important; }
+
+/* Site title in nav */
+.header-title-nav a,
+.site-title a {
+  font-family: 'Goldplay', serif !important;
+  font-weight: 900 !important;
+  font-style: italic !important;
+  color: var(--black) !important;
+}
+
+/* "Order Now" CTA button in nav — add class "nav-cta" via CSS class field */
+.nav-cta a,
+.header-nav-item.nav-cta a {
+  border: 1.5px solid var(--black) !important;
+  padding: 0.35rem 0.85rem !important;
+  color: var(--black) !important;
+}
+.nav-cta a:hover {
+  background: var(--black) !important;
+  color: var(--cream) !important;
+}
+
+/* =====================
+   HERO / BANNER SECTION
+===================== */
+/* Full-height banner with overlay */
+.sections .section.hero-section .content-wrapper,
+.Index-page-content--has-image .Index-page-scrollIndicator {
+  color: #fff;
+}
+
+/* Grain overlay on hero — add class "hero-grain" to the section */
+.hero-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Pink wavy line — place below your H1 using a Code block */
+.hero-wave-block svg path { stroke: var(--pink); }
+
+/* =====================
+   BRAND STRIPE DIVIDER
+   Use a Code block wherever you want the stripe
+===================== */
+.ttt-stripe {
+  display: flex;
+  height: 5px;
+  width: 100%;
+}
+.ttt-stripe .s-pink  { background: var(--pink);  flex: 1; }
+.ttt-stripe .s-mauve { background: var(--mauve); flex: 1; }
+.ttt-stripe .s-blue  { background: var(--blue);  flex: 1; }
+
+/* =====================
+   BUTTONS
+===================== */
+/* Primary button — set button style to "outline" in Squarespace, then override */
+.sqs-block-button-element--primary {
+  background: var(--black) !important;
+  color: var(--cream) !important;
+  border-color: var(--black) !important;
+  font-family: 'Goldplay', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  border-radius: 0 !important;
+}
+.sqs-block-button-element--primary:hover {
+  background: transparent !important;
+  color: var(--black) !important;
+}
+
+/* =====================
+   SECTION BACKGROUNDS
+===================== */
+/* Sections you want cream */
+.page-section.cream-bg { background-color: var(--cream) !important; }
+/* Sections you want black */
+.page-section.black-bg { background-color: var(--black) !important; color: var(--cream) !important; }
+/* Menu page blue */
+.page-section.menu-blue { background-color: #3B4BC8 !important; color: var(--cream) !important; }
+
+/* =====================
+   NEWSLETTER FORM
+===================== */
+.newsletter-form-field-element {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1.5px solid rgba(237,234,217,0.3) !important;
+  border-radius: 0 !important;
+  color: var(--cream) !important;
+  font-family: 'Goldplay', sans-serif !important;
+}
+.newsletter-form-button {
+  background: var(--pink) !important;
+  border-color: var(--pink) !important;
+  border-radius: 0 !important;
+  font-family: 'Goldplay', sans-serif !important;
+  font-weight: 700 !important;
+}
+.newsletter-form-button:hover { background: #c46a99 !important; }
+
+/* =====================
+   FOOTER
+===================== */
+footer.Footer,
+.Footer-inner {
+  background-color: var(--black) !important;
+  color: var(--cream) !important;
+}
+.Footer--top { border-top: none !important; }
+.footerBlocksMiddle a,
+.Footer a { color: rgba(237,234,217,0.7) !important; }
+.Footer a:hover { color: var(--cream) !important; }
+
+/* =====================
+   GALLERY / PHOTO GRID
+===================== */
+.gallery-grid-item:hover img {
+  transform: scale(1.04) !important;
+  transition: transform 0.4s ease !important;
+}
+
+/* =====================
+   MENU PAGE TABS
+   (handled by code block — see menu-tabs.html)
+===================== */
+.ttt-tab-nav { display: flex; border-bottom: 1px solid rgba(237,234,217,0.2); }
+.ttt-tab-btn {
+  background: none; border: none;
+  border-bottom: 3px solid transparent;
+  color: rgba(237,234,217,0.55);
+  font-family: 'Goldplay', sans-serif;
+  font-weight: 700; font-size: 14px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 1rem 1.5rem; cursor: pointer;
+  transition: all 0.15s; min-height: 44px;
+  margin-bottom: -1px;
+}
+.ttt-tab-btn.active { color: #fff; border-bottom-color: var(--pink); }
+.ttt-tab-panel { display: none; padding: 2rem 0; }
+.ttt-tab-panel.active { display: block; }
