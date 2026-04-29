@@ -1,0 +1,174 @@
+<!--
+  Third Time Together — Intro Text + Photo Grid + Stripe + Offer Strip
+  =====================================================================
+  Paste into a CODE BLOCK immediately after the hero block.
+  In Squarespace: set the section background to #EDEAD9 (cream).
+  Set section top/bottom padding to 0.
+-->
+<style>
+  /* ── Intro text strip ── */
+  .ttt-intro {
+    background: #EDEAD9;
+    padding: 4rem 2rem;
+    border-bottom: 1px solid rgba(15,14,10,0.1);
+  }
+  .ttt-intro-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .ttt-label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.3vw, 12px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #D97BAB;
+    margin-bottom: 1.25rem;
+  }
+  .ttt-intro-quote {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-style: italic;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    line-height: 1.5;
+    color: #0F0E0A;
+    margin: 0;
+  }
+
+  /* ── Photo grid ── */
+  .ttt-photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 4px;
+    background: #0F0E0A;
+  }
+  .ttt-photo-cell {
+    position: relative;
+    overflow: hidden;
+    background: #8C8476;
+  }
+  .ttt-photo-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .ttt-photo-cell:hover img { transform: scale(1.04); }
+  .ttt-photo-cell--tall { grid-row: span 2; }
+  .ttt-photo-label {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.2vw, 11px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #EDEAD9;
+    background: rgba(15,14,10,0.55);
+    padding: 0.2em 0.6em;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Brand stripe ── */
+  .ttt-stripe {
+    display: flex;
+    height: 5px;
+  }
+  .ttt-stripe .sp { background: #D97BAB; flex: 1; }
+  .ttt-stripe .sm { background: #9B7FB6; flex: 1; }
+  .ttt-stripe .sb { background: #6B7FC4; flex: 1; }
+
+  /* ── Offer strip ── */
+  .ttt-offers {
+    background: #EDEAD9;
+    padding: 2.5rem 2rem;
+    overflow-x: auto;
+    border-top: 1px solid rgba(15,14,10,0.1);
+    border-bottom: 1px solid rgba(15,14,10,0.1);
+  }
+  .ttt-offer-items {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    min-width: max-content;
+    margin: 0 auto;
+  }
+  .ttt-offer-item {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    color: #0F0E0A;
+    padding: 0 1.5rem;
+    border-right: 1px solid rgba(15,14,10,0.2);
+  }
+  .ttt-offer-item:last-child { border-right: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .ttt-photo-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 180px 180px 180px;
+    }
+    .ttt-photo-cell--tall {
+      grid-row: span 1;
+      grid-column: span 2;
+      height: 240px;
+    }
+    .ttt-offer-items { justify-content: flex-start; }
+  }
+</style>
+
+<!-- Intro text -->
+<div class="ttt-intro">
+  <div class="ttt-intro-inner">
+    <span class="ttt-label">All Day · Every Day</span>
+    <p class="ttt-intro-quote">From coffee and tea to mezze, pitas, and ice cream, there is always something new to come back for.</p>
+  </div>
+</div>
+
+<!-- Photo grid -->
+<div class="ttt-photo-grid" aria-label="Photo gallery">
+  <div class="ttt-photo-cell ttt-photo-cell--tall">
+    <img src="https://raw.githubusercontent.com/sladin/TTT/main/images/interior.jpg"
+         alt="Sunny interior with the Third Time Together counter and plants" loading="lazy">
+    <span class="ttt-photo-label">Our Space</span>
+  </div>
+  <div class="ttt-photo-cell">
+    <img src="https://raw.githubusercontent.com/sladin/TTT/main/images/sandwich.jpg"
+         alt="Breakfast sandwich on a pink plate" loading="lazy">
+    <span class="ttt-photo-label">Breakfast</span>
+  </div>
+  <div class="ttt-photo-cell">
+    <img src="https://raw.githubusercontent.com/sladin/TTT/main/images/coffee.jpg"
+         alt="Latte art in a blue glass" loading="lazy">
+    <span class="ttt-photo-label">Coffee</span>
+  </div>
+  <div class="ttt-photo-cell">
+    <img src="https://raw.githubusercontent.com/sladin/TTT/main/images/pita.jpg"
+         alt="Stuffed pita with braised meat and citrus salsa" loading="lazy">
+    <span class="ttt-photo-label">Lunch &amp; Dinner</span>
+  </div>
+  <div class="ttt-photo-cell">
+    <img src="https://raw.githubusercontent.com/sladin/TTT/main/images/icecream.jpg"
+         alt="Two scoops of house-made ice cream in a pink bowl" loading="lazy">
+    <span class="ttt-photo-label">Ice Cream</span>
+  </div>
+</div>
+
+<!-- Brand stripe -->
+<div class="ttt-stripe" aria-hidden="true">
+  <span class="sp"></span><span class="sm"></span><span class="sb"></span>
+</div>
+
+<!-- Offer strip -->
+<div class="ttt-offers" aria-label="What we serve">
+  <div class="ttt-offer-items">
+    <span class="ttt-offer-item">Breakfast</span>
+    <span class="ttt-offer-item">Lunch</span>
+    <span class="ttt-offer-item">Dinner</span>
+    <span class="ttt-offer-item">Ice Cream</span>
+    <span class="ttt-offer-item">Coffee &amp; Tea</span>
+    <span class="ttt-offer-item">Stuffed Pitas</span>
+  </div>
+</div>
