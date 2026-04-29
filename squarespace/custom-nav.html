@@ -1,0 +1,265 @@
+<!--
+  Third Time Together — Custom Black Nav with Click-Down Menu
+  ============================================================
+  Paste into: Settings → Advanced → Code Injection → HEADER
+
+  This hides Squarespace's native header and replaces it with
+  a minimal black bar. Clicking the toggle reveals a full dropdown.
+-->
+
+<style>
+  /* ── Hide Squarespace's native header ── */
+  #header,
+  .Header,
+  header.Header,
+  .header-announcement-bar-wrapper {
+    display: none !important;
+  }
+
+  /* ── Offset page content so it doesn't hide under the custom nav ── */
+  #page,
+  .sqs-layout,
+  main#page {
+    padding-top: 0 !important;
+  }
+
+  /* ── Announcement strip ── */
+  .ttt-announce {
+    background: #0F0E0A;
+    color: #EDEAD9;
+    text-align: center;
+    padding: 0.4rem 1rem;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+  .ttt-announce .dot { color: #D97BAB; margin: 0 0.4em; }
+
+  /* ── Main nav bar ── */
+  .ttt-nav {
+    position: fixed;
+    top: 28px; /* height of announce bar */
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    background: #0F0E0A;
+    border-bottom: 1px solid rgba(237,234,217,0.08);
+  }
+
+  .ttt-nav-bar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ttt-nav-brand {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(14px, 1.8vw, 17px);
+    color: #EDEAD9;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .ttt-nav-brand:hover { color: #D97BAB; }
+
+  /* ── Toggle button ── */
+  .ttt-nav-toggle {
+    background: none;
+    border: 1px solid rgba(237,234,217,0.25);
+    color: #EDEAD9;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 36px;
+    transition: all 0.15s;
+  }
+  .ttt-nav-toggle:hover {
+    border-color: rgba(237,234,217,0.6);
+    color: #fff;
+  }
+  .ttt-nav-toggle.open {
+    border-color: #D97BAB;
+    color: #D97BAB;
+  }
+
+  .ttt-toggle-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 16px;
+  }
+  .ttt-toggle-icon span {
+    display: block;
+    height: 1.5px;
+    background: currentColor;
+    transition: all 0.2s;
+    transform-origin: center;
+  }
+  .ttt-nav-toggle.open .ttt-toggle-icon span:nth-child(1) {
+    transform: translateY(5.5px) rotate(45deg);
+  }
+  .ttt-nav-toggle.open .ttt-toggle-icon span:nth-child(2) {
+    opacity: 0;
+  }
+  .ttt-nav-toggle.open .ttt-toggle-icon span:nth-child(3) {
+    transform: translateY(-5.5px) rotate(-45deg);
+  }
+
+  /* ── Dropdown panel ── */
+  .ttt-nav-dropdown {
+    background: #0F0E0A;
+    border-top: 1px solid rgba(237,234,217,0.08);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+    opacity: 0;
+  }
+  .ttt-nav-dropdown.open {
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  .ttt-dropdown-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .ttt-drop-link {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(237,234,217,0.65);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .ttt-drop-link:hover { color: #EDEAD9; border-color: rgba(237,234,217,0.2); }
+
+  .ttt-drop-link--cta {
+    background: #D97BAB;
+    color: #fff !important;
+    border-color: #D97BAB !important;
+    margin-left: auto;
+  }
+  .ttt-drop-link--cta:hover { background: #c46a99; border-color: #c46a99 !important; }
+
+  /* ── Push page content below the fixed nav ── */
+  body { padding-top: 80px !important; } /* 28px announce + 52px nav */
+
+  /* ── Overlay to close menu on outside click ── */
+  .ttt-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 80px 0 0 0;
+    z-index: 9990;
+  }
+  .ttt-nav-overlay.open { display: block; }
+
+  @media (max-width: 600px) {
+    .ttt-announce { font-size: 10px; }
+    .ttt-dropdown-inner { flex-direction: column; align-items: flex-start; }
+    .ttt-drop-link--cta { margin-left: 0; }
+  }
+</style>
+
+<!-- Announcement strip -->
+<div class="ttt-announce">
+  Now Open Daily
+  <span class="dot">·</span> 399 Binney St, Kendall Square
+  <span class="dot">·</span> Mon–Fri 7am–9pm
+  <span class="dot">·</span> Sat 9am–9pm
+  <span class="dot">·</span> Sun 10am–9pm
+</div>
+
+<!-- Nav bar -->
+<nav class="ttt-nav" aria-label="Main navigation">
+  <div class="ttt-nav-bar">
+    <a href="/" class="ttt-nav-brand">Third Time Together</a>
+    <button class="ttt-nav-toggle" id="tttToggle" aria-expanded="false" aria-controls="tttDropdown">
+      <span class="ttt-toggle-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+      Menu
+    </button>
+  </div>
+
+  <!-- Dropdown -->
+  <div class="ttt-nav-dropdown" id="tttDropdown" role="menu">
+    <div class="ttt-dropdown-inner">
+      <a href="/menu"        class="ttt-drop-link" role="menuitem">Menu</a>
+      <a href="#"            class="ttt-drop-link" role="menuitem">Gift Cards</a>
+      <a href="/#our-story"  class="ttt-drop-link" role="menuitem">Our Story</a>
+      <a href="/#newsletter" class="ttt-drop-link" role="menuitem">Newsletter</a>
+      <!-- Replace # with your Square ordering URL -->
+      <a href="#"            class="ttt-drop-link ttt-drop-link--cta" role="menuitem">Order Now →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Click-outside overlay -->
+<div class="ttt-nav-overlay" id="tttOverlay" aria-hidden="true"></div>
+
+<script>
+  (function () {
+    var toggle   = document.getElementById('tttToggle');
+    var dropdown = document.getElementById('tttDropdown');
+    var overlay  = document.getElementById('tttOverlay');
+
+    function open() {
+      toggle.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      dropdown.classList.add('open');
+      overlay.classList.add('open');
+    }
+
+    function close() {
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      dropdown.classList.remove('open');
+      overlay.classList.remove('open');
+    }
+
+    toggle.addEventListener('click', function () {
+      dropdown.classList.contains('open') ? close() : open();
+    });
+
+    overlay.addEventListener('click', close);
+
+    /* Close on Escape */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+
+    /* Close when a dropdown link is clicked */
+    dropdown.querySelectorAll('.ttt-drop-link').forEach(function (link) {
+      link.addEventListener('click', close);
+    });
+  })();
+</script>
