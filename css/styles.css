@@ -406,9 +406,11 @@ ul { list-style: none; }
    INFO BAR
 ===================== */
 .info-bar {
-  background: var(--black);
-  color: var(--cream);
+  background: var(--cream);
+  color: var(--black);
   padding: 3rem 2rem;
+  border-top: 1px solid rgba(15,14,10,0.1);
+  border-bottom: 1px solid rgba(15,14,10,0.1);
 }
 
 .info-bar-inner {
@@ -433,10 +435,10 @@ ul { list-style: none; }
   font-style: normal;
   font-size: clamp(12px, 1.5vw, 14px);
   line-height: 1.8;
-  color: rgba(237,234,217,0.85);
+  color: var(--warm-gray);
 }
 
-.info-block a { color: var(--cream); text-decoration: underline; text-underline-offset: 3px; }
+.info-block a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
 .info-block a:hover { color: var(--pink); }
 
 /* =====================
