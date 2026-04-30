@@ -1,163 +1,431 @@
 <!--
-  Full tabbed menu — paste into a single CODE BLOCK on your Menu page.
-  The CSS is already in custom.css. This handles the tabs + all content.
+  Third Time Together — Full Tabbed Menu
+  =======================================
+  Paste into a single CODE BLOCK on your Menu page.
+  Set section background to #EDEAD9 and padding to 0.
 -->
-<div style="max-width:1100px;margin:0 auto;padding:2rem;">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
 
-  <!-- Tab buttons -->
-  <div class="ttt-tab-nav" role="tablist">
-    <button class="ttt-tab-btn active" onclick="tttTab(this,'coffee')"   role="tab">Coffee &amp; Tea</button>
-    <button class="ttt-tab-btn"        onclick="tttTab(this,'icecream')" role="tab">Ice Cream</button>
-    <button class="ttt-tab-btn"        onclick="tttTab(this,'breakfast')"role="tab">Breakfast</button>
-    <button class="ttt-tab-btn"        onclick="tttTab(this,'lunch')"    role="tab">Lunch &amp; Dinner</button>
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-RegularIt.otf') format('opentype');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-Black.otf') format('opentype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Goldplay';
+  src: url('https://raw.githubusercontent.com/sladin/TTT/main/fonts/Goldplay-BlackIt.otf') format('opentype');
+  font-weight: 900; font-style: italic; font-display: swap;
+}
+
+.ttt-menu * { box-sizing: border-box; margin: 0; padding: 0; }
+
+.ttt-menu {
+  background: #EDEAD9;
+  color: #0F0E0A;
+  font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+  padding: 0 0 4rem;
+  width: 100%;
+}
+
+/* ── Header ── */
+.ttt-menu-header {
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  border-bottom: 1px solid rgba(15,14,10,0.1);
+}
+.ttt-menu-title {
+  font-family: 'Goldplay', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1;
+  color: #0F0E0A;
+  margin-bottom: 0.4rem;
+}
+.ttt-menu-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(10px, 1.5vw, 12px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8C8476;
+}
+
+/* ── Tab nav ── */
+.ttt-tabs {
+  display: flex;
+  border-bottom: 2px solid rgba(15,14,10,0.12);
+  overflow-x: auto;
+  background: #EDEAD9;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.ttt-tab {
+  flex: 1;
+  padding: 1rem 0.5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #8C8476;
+  font-family: 'Goldplay', sans-serif;
+  font-weight: 700;
+  font-size: clamp(12px, 1.8vw, 14px);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 52px;
+  white-space: nowrap;
+  margin-bottom: -2px;
+}
+.ttt-tab:hover { color: #0F0E0A; }
+.ttt-tab.active { color: #0F0E0A; border-bottom-color: #D97BAB; }
+
+/* ── Sections ── */
+.ttt-section { display: none; padding: 2.5rem 2rem; max-width: 1100px; margin: 0 auto; }
+.ttt-section.active { display: block; }
+
+.ttt-section-title {
+  font-family: 'Goldplay', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1;
+  color: #0F0E0A;
+  margin-bottom: 0.25rem;
+}
+.ttt-section-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(10px, 1.3vw, 11px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8C8476;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+/* ── Category labels ── */
+.ttt-cat {
+  font-family: 'Goldplay', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  color: #D97BAB;
+  margin: 2rem 0 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1.5px solid rgba(217,123,171,0.3);
+}
+.ttt-cat:first-of-type { margin-top: 0; }
+
+.ttt-cat-note {
+  font-style: italic;
+  font-size: clamp(11px, 1.3vw, 13px);
+  color: #8C8476;
+  margin-bottom: 0.75rem;
+  margin-top: -0.2rem;
+  display: block;
+}
+
+/* ── Items ── */
+.ttt-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(15,14,10,0.08);
+}
+.ttt-item:last-child { border-bottom: none; }
+.ttt-item-left { flex: 1; min-width: 0; }
+
+.ttt-item-name {
+  font-weight: 700;
+  font-size: clamp(13px, 1.8vw, 15px);
+  color: #0F0E0A;
+  line-height: 1.2;
+}
+.ttt-item-name sup {
+  font-size: 9px;
+  opacity: 0.55;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+.ttt-item-desc {
+  font-style: italic;
+  font-size: clamp(11px, 1.4vw, 13px);
+  color: #8C8476;
+  margin-top: 0.2rem;
+  line-height: 1.45;
+}
+.ttt-item-addon {
+  font-size: clamp(11px, 1.3vw, 12px);
+  color: #8C8476;
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+.ttt-item-price {
+  font-family: 'Goldplay', sans-serif;
+  font-weight: 900;
+  font-size: clamp(13px, 1.8vw, 15px);
+  color: #D97BAB;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Two column grid ── */
+.ttt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
+
+/* ── Ice cream pricing cards ── */
+.ttt-price-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.ttt-price-card {
+  border: 1px solid rgba(15,14,10,0.15);
+  padding: 1rem;
+  text-align: center;
+}
+.ttt-price-card-label {
+  display: block;
+  font-size: clamp(10px, 1.2vw, 11px);
+  color: #8C8476;
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+.ttt-price-card-amount {
+  display: block;
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #0F0E0A;
+}
+
+/* ── Key / allergy note ── */
+.ttt-key {
+  margin-top: 2rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(15,14,10,0.12);
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(10px, 1.2vw, 11px);
+  color: #8C8476;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+}
+.ttt-allergy {
+  margin-top: 1.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(10px, 1.2vw, 11px);
+  color: #8C8476;
+  font-style: italic;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 600px) {
+  .ttt-tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .ttt-tab { border-bottom: none; border: 1px solid rgba(15,14,10,0.12); margin-bottom: 0; }
+  .ttt-tab.active { background: #0F0E0A; color: #EDEAD9; border-color: #0F0E0A; }
+  .ttt-grid { grid-template-columns: 1fr; }
+  .ttt-price-cards { grid-template-columns: 1fr 1fr; }
+}
+</style>
+
+<div class="ttt-menu">
+
+  <div class="ttt-menu-header">
+    <div class="ttt-menu-title">Third Time Together</div>
+    <div class="ttt-menu-sub">399 Binney St, Cambridge · Kendall Square</div>
   </div>
 
-  <!-- Coffee & Tea -->
-  <div class="ttt-tab-panel active" id="ttt-coffee">
-    <p style="font-family:monospace;font-size:11px;letter-spacing:.1em;color:rgba(237,234,217,.55);margin-bottom:1.5rem;">MON–FRI 7:00AM · SAT 9:00AM · SUN 10:00AM</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;">
+  <!-- Tab nav -->
+  <div class="ttt-tabs" role="tablist">
+    <button class="ttt-tab active" onclick="tttShow('coffee',this)"   role="tab">Coffee &amp; Tea</button>
+    <button class="ttt-tab"        onclick="tttShow('icecream',this)" role="tab">Ice Cream</button>
+    <button class="ttt-tab"        onclick="tttShow('breakfast',this)"role="tab">Breakfast</button>
+    <button class="ttt-tab"        onclick="tttShow('lunch',this)"    role="tab">Lunch &amp; Dinner</button>
+  </div>
+
+  <!-- ═══════════════ COFFEE & TEA ═══════════════ -->
+  <div id="ttt-coffee" class="ttt-section active">
+    <div class="ttt-section-title">Coffee &amp; Tea</div>
+    <span class="ttt-section-sub">Mon–Fri 7:00am · Sat 9:00am · Sun 10:00am</span>
+    <div class="ttt-grid">
       <div>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin-bottom:1rem;">Coffee Drinks</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Espresso</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$4.25</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Cortado</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$4.85</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Cappuccino</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$5.30</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Latte</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$5.80</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Willow Latte</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$6.80</td></tr>
-          <tr><td style="padding:.6rem 0;">Batch Brew Coffee</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">$3.60 / $4.10</td></tr>
-        </table>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin:2rem 0 1rem;">Add-Ons</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Oat Milk</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">+$1</td></tr>
-          <tr><td style="padding:.6rem 0;"><span>House Syrups</span><br><span style="font-style:italic;font-size:.8em;opacity:.6;">vanilla panela · bergamot · willow water · valrhona mocha · cardamom</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">+$1</td></tr>
-        </table>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin:2rem 0 1rem;">Pastries &amp; Treats</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Iggy's Croissant</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$3.50</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Pain au Chocolat</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$3.75</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Preserved Bergamot Bar</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$2.85</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Feta-Za'atar Loaf</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$4.00</td></tr>
-          <tr><td style="padding:.6rem 0;">Cookies / Muffins</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">MP</td></tr>
-        </table>
+        <div class="ttt-cat">Coffee Drinks</div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Espresso</div></div><div class="ttt-item-price">$4.25</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Cortado</div></div><div class="ttt-item-price">$4.85</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Cappuccino</div></div><div class="ttt-item-price">$5.30</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Latte</div></div><div class="ttt-item-price">$5.80</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Willow Latte</div></div><div class="ttt-item-price">$6.80</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Batch Brew Coffee</div></div><div class="ttt-item-price">$3.60 / $4.10</div></div>
+
+        <div class="ttt-cat">Add-Ons</div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Oat Milk</div></div><div class="ttt-item-price">+$1</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">House Syrups</div><div class="ttt-item-desc">vanilla panela · bergamot · willow water · valrhona mocha · cardamom</div></div><div class="ttt-item-price">+$1</div></div>
+
+        <div class="ttt-cat">Pastries &amp; Treats</div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Iggy's Croissant</div></div><div class="ttt-item-price">$3.50</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Pain au Chocolat</div></div><div class="ttt-item-price">$3.75</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Preserved Bergamot Bar</div></div><div class="ttt-item-price">$2.85</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Feta-Za'atar Loaf</div></div><div class="ttt-item-price">$4.00</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Cookies / Muffins</div></div><div class="ttt-item-price">MP</div></div>
       </div>
       <div>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin-bottom:1rem;">Tea Drinks</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);"><span>Matcha Latte</span><br><span style="font-style:italic;font-size:.8em;opacity:.6;">uji homare matcha from Kettl</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);vertical-align:top;">$6.20</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);"><span>Hōjicha Latte</span><br><span style="font-style:italic;font-size:.8em;opacity:.6;">fuukua hōjicha from Kettl</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);vertical-align:top;">$5.80</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);"><span>Marrakech Fog</span><br><span style="font-style:italic;font-size:.8em;opacity:.6;">red jade latte with preserved bergamot &amp; vanilla syrup</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);vertical-align:top;">$6.20</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);"><span>Chai Latte</span><br><span style="font-style:italic;font-size:.8em;opacity:.6;">housemade blend with red jade tea &amp; jaggery syrup</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);vertical-align:top;">$5.80</td></tr>
-          <tr><td style="padding:.6rem 0;"><span>Brewed Tea</span><br><span style="font-style:italic;font-size:.8em;opacity:.6;">jasmine green · milk oolong · hummingbird's dream · red jade black — from Broken Cup Teahouse</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;vertical-align:top;">$4.10 / $5.20</td></tr>
-        </table>
+        <div class="ttt-cat">Tea Drinks</div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Matcha Latte</div><div class="ttt-item-desc">uji homare matcha from Kettl</div></div><div class="ttt-item-price">$6.20</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Hōjicha Latte</div><div class="ttt-item-desc">fuukua hōjicha from Kettl</div></div><div class="ttt-item-price">$5.80</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Marrakech Fog</div><div class="ttt-item-desc">red jade latte with preserved bergamot &amp; vanilla syrup</div></div><div class="ttt-item-price">$6.20</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Chai Latte</div><div class="ttt-item-desc">housemade blend with red jade tea &amp; jaggery syrup</div></div><div class="ttt-item-price">$5.80</div></div>
+        <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Brewed Tea</div><div class="ttt-item-desc">jasmine green · milk oolong · hummingbird's dream · red jade black — from Broken Cup Teahouse</div></div><div class="ttt-item-price">$4.10 / $5.20</div></div>
       </div>
     </div>
   </div>
 
-  <!-- Ice Cream -->
-  <div class="ttt-tab-panel" id="ttt-icecream">
-    <p style="font-family:monospace;font-size:11px;letter-spacing:.1em;color:rgba(237,234,217,.55);margin-bottom:1.5rem;">SCOOPS · HALF-PINTS · PINTS · FLOATS · SHAKES</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2.5rem;">
-      <div style="border:1px solid rgba(237,234,217,.2);padding:1rem;text-align:center;"><span style="display:block;font-size:.75rem;opacity:.6;margin-bottom:.3rem;">Small Cup or Cone (two half scoops)</span><span style="font-size:2rem;font-family:monospace;">$5.50</span></div>
-      <div style="border:1px solid rgba(237,234,217,.2);padding:1rem;text-align:center;"><span style="display:block;font-size:.75rem;opacity:.6;margin-bottom:.3rem;">Half-Pints</span><span style="font-size:2rem;font-family:monospace;">$8</span></div>
-      <div style="border:1px solid rgba(237,234,217,.2);padding:1rem;text-align:center;"><span style="display:block;font-size:.75rem;opacity:.6;margin-bottom:.3rem;">Pints</span><span style="font-size:2rem;font-family:monospace;">$13</span></div>
-      <div style="border:1px solid rgba(237,234,217,.2);padding:1rem;text-align:center;"><span style="display:block;font-size:.75rem;opacity:.6;margin-bottom:.3rem;">Floats</span><span style="font-size:2rem;font-family:monospace;">$9</span></div>
-      <div style="border:1px solid rgba(237,234,217,.2);padding:1rem;text-align:center;"><span style="display:block;font-size:.75rem;opacity:.6;margin-bottom:.3rem;">Shakes</span><span style="font-size:2rem;font-family:monospace;">$13</span></div>
+  <!-- ═══════════════ ICE CREAM ═══════════════ -->
+  <div id="ttt-icecream" class="ttt-section">
+    <div class="ttt-section-title">Ice Cream</div>
+    <span class="ttt-section-sub">Scoops · Half-Pints · Pints · Floats · Shakes</span>
+
+    <div class="ttt-price-cards">
+      <div class="ttt-price-card"><span class="ttt-price-card-label">Small Cup or Cone (two half scoops)</span><span class="ttt-price-card-amount">$5.50</span></div>
+      <div class="ttt-price-card"><span class="ttt-price-card-label">Half-Pints</span><span class="ttt-price-card-amount">$8</span></div>
+      <div class="ttt-price-card"><span class="ttt-price-card-label">Pints</span><span class="ttt-price-card-amount">$13</span></div>
+      <div class="ttt-price-card"><span class="ttt-price-card-label">Floats</span><span class="ttt-price-card-amount">$9</span></div>
+      <div class="ttt-price-card"><span class="ttt-price-card-label">Shakes</span><span class="ttt-price-card-amount">$13</span></div>
     </div>
-    <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin-bottom:1.25rem;">Current Flavors</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>Fior di Agri (Panna)</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Because we can't do just a "sweet cream" — our sour cream ice cream</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>Albius's Legacy</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Rotating vanilla bean ice cream paired with true Madagascar pink peppercorn</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>The Coltelli</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Broadsheet coffee custard with pockets of smoked salt</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>Willow Latte</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Coffee custard infused with the sweet floral aroma and slight astringency of willow catkins</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>The Hojicha Card Never Declines</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Rich frozen custard infused with Kettl's hōjicha and green, black, and red cardamom</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>Valrhona in Valhalla</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Luxurious Valrhona chocolate gelato enhanced by flake salt</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>CMC (Chocolate, Mahlab, and Cocoa)</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Chocolate ice cream with a swirl of mahlab-spiced cherry and chunks of cocoa mahlab cherry cookies</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>Preserved Bergamot Bars</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Tart lemon and labne ice cream with chunks of salty preserved bergamot and shortbread</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>Eastern Mediterranean Lime Rickey</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Sour cherry molasses, black lime, and lime sorbet</span><br><span style="font-size:.7rem;color:#D97BAB;border:1px solid #D97BAB;padding:.1em .4em;margin-top:.4rem;display:inline-block;font-family:monospace;">VEGAN</span></div>
-      <div style="border:1px solid rgba(237,234,217,.15);padding:1rem 1.25rem;background:rgba(255,255,255,.04);"><strong>Foraging in the Forest</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Autumn olive berry ice cream with juniper sprigs and streaks of raspberry rose jam</span><br><span style="font-size:.7rem;color:#D97BAB;border:1px solid #D97BAB;padding:.1em .4em;margin-top:.4rem;display:inline-block;font-family:monospace;">VEGAN</span></div>
-    </div>
-    <p style="font-style:italic;font-size:.8em;opacity:.45;margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(237,234,217,.12);">Before placing your order, please inform your scooper if a person in your party has a food allergy.</p>
+
+    <div class="ttt-cat">Current Flavors</div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Fior di Agri (Panna)</div><div class="ttt-item-desc">Because we can't do just a "sweet cream" — our sour cream ice cream</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Albius's Legacy</div><div class="ttt-item-desc">Rotating vanilla bean ice cream paired with true Madagascar pink peppercorn</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">The Coltelli</div><div class="ttt-item-desc">Broadsheet coffee custard with pockets of smoked salt</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Hawaij Ya</div><div class="ttt-item-desc">Coffee custard spiced with our own blend of traditional Yemeni sweet hawaij</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">The Hojicha Card Never Declines</div><div class="ttt-item-desc">Rich frozen custard infused with Kettl's hōjicha and green, black, and red cardamom</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Valrhona in Valhalla</div><div class="ttt-item-desc">Luxurious Valrhona chocolate gelato enhanced by flake salt</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">CMC (Chocolate, Mahlab, and Cocoa)</div><div class="ttt-item-desc">Chocolate ice cream with a swirl of mahlab-spiced cherry and chunks of cocoa mahlab cherry cookies</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Preserved Bergamot Bars</div><div class="ttt-item-desc">Tart lemon and labne ice cream with chunks of salty preserved bergamot and shortbread</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">The Myth of Marco Polo II</div><div class="ttt-item-desc">Shiso ice cream with a stream of oriado dark chocolate chips throughout</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Merchant of Baghdad</div><div class="ttt-item-desc">Maple and fenugreek gelato with a bright yellow streak of amba sauce (Iraqi-Jewish mango sauce)</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Herbs in the Field</div><div class="ttt-item-desc">Lemon thyme and rosemary ice cream with a ripple of white chocolate fudge with Kettl's matcha</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Basil Cheong</div><div class="ttt-item-desc">Sour green plum ice cream with notes of basil and chewy apricot pate de fruits</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Perfumed Rice <span style="font-size:10px;color:#D97BAB;border:1px solid #D97BAB;padding:0.1em 0.4em;font-family:monospace;font-style:normal;">vegan</span></div><div class="ttt-item-desc">Broken Cup teahouse's jasmine green tea and jasmine rice with housemade ginger-pineapple tepache</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Lemonana <span style="font-size:10px;color:#D97BAB;border:1px solid #D97BAB;padding:0.1em 0.4em;font-family:monospace;font-style:normal;">vegan</span></div><div class="ttt-item-desc">Orange-blossom lemonade sorbet with streaks of hibiscus and sumac and splashes of mint</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Eastern Mediterranean Lime Rickey <span style="font-size:10px;color:#D97BAB;border:1px solid #D97BAB;padding:0.1em 0.4em;font-family:monospace;font-style:normal;">vegan</span></div><div class="ttt-item-desc">Sour cherry molasses, black lime, and lime sorbet</div></div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">So Much Vimming!</div><div class="ttt-item-desc">Vimto cordial ice cream with a swirl of golden raisins, hazelnuts, and banyuls vinegar</div></div></div>
+
+    <p class="ttt-allergy">Before placing your order, please inform your scooper if a person in your party has a food allergy.</p>
   </div>
 
-  <!-- Breakfast -->
-  <div class="ttt-tab-panel" id="ttt-breakfast">
-    <p style="font-family:monospace;font-size:11px;letter-spacing:.1em;color:rgba(237,234,217,.55);margin-bottom:1.5rem;">MON–FRI FROM 7:00AM · SAT FROM 9:00AM · SUN FROM 10:00AM</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;">
-      <div>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin-bottom:1rem;">Grab &amp; Go</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);"><strong>Perfect Parfait</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Ronnybrook yogurt &amp; labne layered with chewy grains and seasonal jam</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);vertical-align:top;">$8.00</td></tr>
-          <tr><td style="padding:.6rem 0;"><strong>Chia Pet</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Silken tofu pudding swirled with seasonal jam and topped with crunchy granola</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;vertical-align:top;">$8.50</td></tr>
-        </table>
+  <!-- ═══════════════ BREAKFAST ═══════════════ -->
+  <div id="ttt-breakfast" class="ttt-section">
+    <div class="ttt-section-title">Breakfast</div>
+    <span class="ttt-section-sub">Mon–Fri from 7:00am · Sat from 9:00am · Sun from 10:00am</span>
+
+    <div class="ttt-cat">Grab &amp; Go</div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Perfect Parfait</div><div class="ttt-item-desc">Ronnybrook yogurt &amp; labne layered with chewy grains and seasonal jam</div></div><div class="ttt-item-price">$8.00</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Chia Pet</div><div class="ttt-item-desc">Silken tofu pudding swirled with seasonal jam and topped with crunchy granola</div></div><div class="ttt-item-price">$8.50</div></div>
+
+    <div class="ttt-cat">Hot Breakfast</div>
+    <div class="ttt-item">
+      <div class="ttt-item-left">
+        <div class="ttt-item-name">Breakfast Sandwich</div>
+        <div class="ttt-item-desc">Eggs soufflé in a crispy nest topped with Jasper Hill Farm alpine and cheddar cheeses on a brioche bun</div>
+        <div class="ttt-item-addon">+ Animal Style: extra cheese, house sausage &amp; zhoug (herby Yemeni hot sauce) — +$3.25</div>
       </div>
-      <div>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin-bottom:1rem;">Hot Breakfast</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);"><strong>Breakfast Sandwich</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Eggs soufflé in a crispy nest topped with Jasper Hill Farm alpine and cheddar cheeses on a brioche bun</span><br><span style="font-size:.75em;opacity:.5;font-style:italic;">+ Animal Style: extra cheese, house sausage &amp; zhoug — +$3.25</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);vertical-align:top;">$8.50</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);"><strong>Egg White Fatayer</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Egg white omelet with bright spinach and sumac filling</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);vertical-align:top;">$7.75</td></tr>
-          <tr><td style="padding:.6rem 0;"><strong>Shakshuka</strong><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Tomato curry with roasted peppers, creamy brined cheese, and Latremore Pine Ridge Farm eggs, served with warm pita</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;vertical-align:top;">$14</td></tr>
-        </table>
-      </div>
+      <div class="ttt-item-price">$8.50</div>
     </div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Egg White Fatayer</div><div class="ttt-item-desc">Egg white omelet with bright spinach and sumac filling</div></div><div class="ttt-item-price">$7.75</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Shakshuka</div><div class="ttt-item-desc">Tomato curry with roasted peppers, creamy brined cheese, and Latremore Pine Ridge Farm eggs, served with warm pita</div></div><div class="ttt-item-price">$14</div></div>
   </div>
 
-  <!-- Lunch & Dinner -->
-  <div class="ttt-tab-panel" id="ttt-lunch">
-    <p style="font-family:monospace;font-size:11px;letter-spacing:.1em;color:rgba(237,234,217,.55);margin-bottom:1.5rem;">ALMOST ALL DISHES MAY BE MADE GLUTEN FREE</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;">
-      <div>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin-bottom:1rem;">Warm Mezze</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Persian Avgolemono Soup</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$15</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Moussaka Crunchwrap Supreme</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$19</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Warm Olives <em>(vn)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$5</td></tr>
-          <tr><td style="padding:.6rem 0;">Heirloom Cabbage Dolmas <em>(vo)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">$3 / piece</td></tr>
-        </table>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin:2rem 0 1rem;">Cold Mezze</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Fattoush <em>(vn)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$15</td></tr>
-          <tr><td style="padding:.6rem 0;">Mezze Moment <em>(vno)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">$14</td></tr>
-        </table>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin:2rem 0 1rem;">Sides</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Side Dipping Vegetables</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$3</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Extra Pita</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$2 each</td></tr>
-          <tr><td style="padding:.6rem 0;">Dipping Onions</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">Free w/ any dip</td></tr>
-        </table>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin:2rem 0 1rem;">Hot Dogs</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Classic (for a reason) Dog <em>(vno)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$7</td></tr>
-          <tr><td style="padding:.6rem 0;">Levantine Dog <em>(vno)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">$10</td></tr>
-        </table>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin:2rem 0 1rem;">Drinks</h3>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Bottled Water</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$2</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,divizija,.07);"><span>Fancy Seltzers</span><br><span style="font-style:italic;font-size:.8em;opacity:.6;">Cucumber · Hibiscus Rose · Yuzu</span></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);vertical-align:top;">$5</td></tr>
-          <tr><td style="padding:.6rem 0;">Athletic Brewing Co. NA Beer</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">$9</td></tr>
-        </table>
+  <!-- ═══════════════ LUNCH & DINNER ═══════════════ -->
+  <div id="ttt-lunch" class="ttt-section">
+    <div class="ttt-section-title">Lunch &amp; Dinner</div>
+    <span class="ttt-section-sub">Almost all dishes may be made gluten free</span>
+
+    <!-- PLATES -->
+    <div class="ttt-cat">Crunchwraps</div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Moussaka Crunchwrap Supreme</div><div class="ttt-item-desc">Seasoned lamb, crunchy potato and tostada, eggplant mornay, labne, tomato, and shredded lettuce</div></div><div class="ttt-item-price">$19</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Levantine Crunchwrap<sup>v</sup></div><div class="ttt-item-desc">Seasoned legume "beef," crunchy favas and tostada, ful medames, cheese, hot labne, tomato, and shredded lettuce</div></div><div class="ttt-item-price">$18</div></div>
+
+    <div class="ttt-cat">Warm Mezze</div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Crispy Peter Wilcox Potatoes<sup>vn</sup></div><div class="ttt-item-desc">Kibbeh-spiced new potatoes griddled with herbs</div></div><div class="ttt-item-price">(per portion) $4.75</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Persian Avgolemono Soup</div><div class="ttt-item-desc">Bright, lemony chicken and rice soup stewed with greens, herbs, and dried lime, accompanied by rice and the crunchy bits</div></div><div class="ttt-item-price">$15</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Warm Olives<sup>vn</sup></div><div class="ttt-item-desc">Cracked souri olives marinated in souri oil and our own spice blend</div></div><div class="ttt-item-price">$5</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Heirloom Cabbage Dolmas<sup>vo</sup></div><div class="ttt-item-desc">Spiced beef and herbed rice wrapped in cabbage leaves in a warm tomato sauce</div></div><div class="ttt-item-price">$3 / piece</div></div>
+
+    <div class="ttt-cat">Cold Mezze</div>
+    <div class="ttt-item">
+      <div class="ttt-item-left">
+        <div class="ttt-item-name">Fattoush<sup>vn</sup></div>
+        <div class="ttt-item-desc">The best salad in the world, layered with crunchy pita, refreshing herbs, and tart sumac complemented with local vegetables and fruits</div>
+        <div class="ttt-item-addon">+ saffron chicken $5 &nbsp;·&nbsp; + custardy egg* $2.50</div>
       </div>
-      <div>
-        <h3 style="font-size:1.4rem;letter-spacing:.05em;border-bottom:1px solid rgba(237,234,217,.2);padding-bottom:.5rem;margin-bottom:.5rem;">Stuffed Pitas</h3>
-        <p style="font-style:italic;font-size:.8em;opacity:.55;margin-bottom:1rem;">Can be served as a platter over rice pilaf (gluten free) at no additional charge</p>
-        <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Lebanese Blonde <em>(vn)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$14</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Al Pastor(ish)</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$17</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Iraq Me (Amadeus) <em>(v)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$15</td></tr>
-          <tr><td style="padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">Pastirma-Spiced Reuben <em>(vo)</em></td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;border-bottom:1px solid rgba(237,234,217,.07);">$23</td></tr>
-          <tr><td style="padding:.6rem 0;">Persian-Jewish Meatball Sub</td><td align="right" style="color:#D97BAB;font-size:1.1rem;padding:.6rem 0;">$16</td></tr>
-        </table>
-      </div>
+      <div class="ttt-item-price">$15</div>
     </div>
-    <p style="font-style:italic;font-size:.8em;opacity:.45;margin-top:2rem;padding:1rem;border:1px solid rgba(237,234,217,.15);">(v) vegetarian · (vo) vegetarian option · (vn) vegan · (vno) vegan option available</p>
+    <div class="ttt-item">
+      <div class="ttt-item-left">
+        <div class="ttt-item-name">Mezze Moment<sup>vno</sup></div>
+        <div class="ttt-item-desc">Platter of three cold mezze served with pita and iced onions — choose from: Iraqi hot pepper labne, early spring salad with favas &amp; preserved lemon salsa, Baba O'Riley, Cacik with mint &amp; cucumber, Armenian-spiced tahini cauliflower, Ramps vinaigrette</div>
+      </div>
+      <div class="ttt-item-price">$14</div>
+    </div>
+
+    <div class="ttt-cat">Sides for Mezze</div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Side Dipping Vegetables</div></div><div class="ttt-item-price">$3</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Extra Pita</div></div><div class="ttt-item-price">$2 each</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Dipping Onions</div><div class="ttt-item-desc">Free with purchase of any dip</div></div><div class="ttt-item-price">Free</div></div>
+
+    <!-- STUFFED PITAS -->
+    <div class="ttt-cat">(Mostly) Stuffed Pitas</div>
+    <span class="ttt-cat-note">Can be served as a platter over rice pilaf (gluten free) at no additional charge</span>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Lebanese Blonde<sup>vn</sup></div><div class="ttt-item-desc">Roasted cauliflower, braised greens, bright garlic toum, and sesame chili crisp</div></div><div class="ttt-item-price">$14</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Al Pastor(ish)</div><div class="ttt-item-desc">Baharat-spiced pork shoulder, schug aioli, and pineapple-radish salsa</div></div><div class="ttt-item-price">$17</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Iraq Me (Amadeus)<sup>v/vno</sup></div><div class="ttt-item-desc">Roasted eggplant, custardy egg*, amba (pickled mango sauce), vegetables, and crunchy potato</div></div><div class="ttt-item-price">$15</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Pastirma-Spiced Reuben</div><div class="ttt-item-desc">½ lb Armenian cured beef pastrami, schug sauerkraut, Jasper Hill alpine cheese, and Ukrainian dressing on Pizza Project's seeded rye focaccia</div></div><div class="ttt-item-price">$23</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Persian-Jewish Meatball Sub</div><div class="ttt-item-desc">Gondi meatballs (cardamom and turmeric-infused chicken and chickpea) with shakshuka-style tomato sauce and kashkaval cheese on Iggy's bread</div></div><div class="ttt-item-price">$16</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">The Maghreb Awakening</div><div class="ttt-item-desc">Smoked trout rillettes amandine with spring ramp charmoula and pickled dilly beans</div></div><div class="ttt-item-price">$19</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Spring Chicken</div><div class="ttt-item-desc">Saffron-marinated chicken with green apricot sauce, warm nettles, and the bounty of spring</div></div><div class="ttt-item-price">$18</div></div>
+
+    <!-- HOT DOGS -->
+    <div class="ttt-cat">Hot Dogs</div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Classic (for a reason) Dog<sup>vno</sup></div><div class="ttt-item-desc">Griddled knockwurst on a potato bun</div></div><div class="ttt-item-price">$7</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Levantine Dog<sup>vno</sup></div><div class="ttt-item-desc">The classic topped with Yemenite schug-spiced sauerkraut and Iraqi pickled-mango mustard</div></div><div class="ttt-item-price">$10</div></div>
+
+    <!-- DRINKS -->
+    <div class="ttt-cat">Drinks</div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Bottled Water</div></div><div class="ttt-item-price">$2</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Fancy Seltzers</div><div class="ttt-item-desc">Cucumber · Hibiscus Rose · Yuzu</div></div><div class="ttt-item-price">$5</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Sodas</div><div class="ttt-item-desc">Mexican Coke · Apricot Saffron Sumac · Peach Yuzu Geranium</div></div><div class="ttt-item-price">$5 / $7.50</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Floats</div></div><div class="ttt-item-price">$9</div></div>
+    <div class="ttt-item"><div class="ttt-item-left"><div class="ttt-item-name">Athletic Brewing Co. NA Beer</div></div><div class="ttt-item-price">$9</div></div>
+
+    <div class="ttt-key">(v) vegetarian &nbsp;·&nbsp; (vo) vegetarian option available &nbsp;·&nbsp; (vn) vegan &nbsp;·&nbsp; (vno) vegan option available</div>
   </div>
 
 </div>
 
 <script>
-function tttTab(btn, id) {
-  document.querySelectorAll('.ttt-tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  document.querySelectorAll('.ttt-tab-panel').forEach(function(p){ p.classList.remove('active'); });
-  btn.classList.add('active');
+function tttShow(id, btn) {
+  document.querySelectorAll('.ttt-section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.ttt-tab').forEach(function(t){ t.classList.remove('active'); });
   document.getElementById('ttt-' + id).classList.add('active');
+  btn.classList.add('active');
 }
 </script>
