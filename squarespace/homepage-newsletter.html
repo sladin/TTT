@@ -86,6 +86,13 @@
 
   .ttt-nl-btn:hover { background: #c46a99; border-color: #c46a99; }
 
+  .ttt-nl-signup {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+  }
+
   .ttt-nl-fine {
     font-family: 'DM Mono', monospace;
     font-size: clamp(10px, 1.2vw, 11px);
@@ -118,38 +125,13 @@
       <p class="ttt-nl-body">We send occasional updates — new ice cream flavors, seasonal menu changes, events. No spam, ever.</p>
     </div>
     <div>
-      <form class="ttt-nl-fields" id="tttNlForm" action="#" method="post" novalidate>
-        <input
-          class="ttt-nl-input"
-          type="email"
-          name="email"
-          placeholder="your@email.com"
-          required
-          aria-label="Email address"
-          autocomplete="email"
-        >
-        <button type="submit" class="ttt-nl-btn">Subscribe →</button>
-      </form>
+      <a href="https://squareup.com/customer-programs/enroll/nStxDe598ZRg?utm_medium=copied-link&utm_source=online"
+         class="ttt-nl-btn ttt-nl-signup"
+         target="_blank"
+         rel="noopener">
+        Sign Up →
+      </a>
       <p class="ttt-nl-fine">We'll never share your email. Unsubscribe anytime.</p>
-      <p class="ttt-nl-success" id="tttNlSuccess">Thanks — you're on the list.</p>
     </div>
   </div>
 </div>
-
-<script>
-  /* Basic client-side validation + success state.
-     Wire up the form action to Mailchimp, Klaviyo, or
-     Squarespace Email Campaigns when ready. */
-  document.getElementById('tttNlForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var input = this.querySelector('.ttt-nl-input');
-    if (!input.value || !input.value.includes('@')) {
-      input.focus();
-      return;
-    }
-    this.style.display = 'none';
-    document.querySelector('.ttt-nl-fine').style.display = 'none';
-    document.getElementById('tttNlSuccess').style.display = 'block';
-    /* TODO: replace with actual form submission to your email provider */
-  });
-</script>
