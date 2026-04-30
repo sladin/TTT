@@ -82,24 +82,24 @@
   /* ── Offer strip ── */
   .ttt-offers {
     background: #EDEAD9;
-    padding: 2.5rem 2rem;
-    overflow-x: auto;
+    padding: 2rem 1.5rem;
+    overflow: hidden;
     border-top: 1px solid rgba(15,14,10,0.1);
     border-bottom: 1px solid rgba(15,14,10,0.1);
   }
   .ttt-offer-items {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    white-space: nowrap;
-    min-width: max-content;
+    gap: 0;
     margin: 0 auto;
   }
   .ttt-offer-item {
     font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
     font-style: italic;
-    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
     color: #0F0E0A;
-    padding: 0 1.5rem;
+    padding: 0.25rem 1.25rem;
     border-right: 1px solid rgba(15,14,10,0.2);
   }
   .ttt-offer-item:last-child { border-right: none; }

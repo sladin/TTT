@@ -175,6 +175,22 @@ header.Header,
 }
 
 /* =====================
+   PREVENT HORIZONTAL OVERFLOW SITE-WIDE
+===================== */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Footer mobile — stack columns, prevent overflow */
+@media (max-width: 768px) {
+  #footer-sections .fluid-engine,
+  #footer-sections [class*="fe-block"] {
+    overflow: hidden !important;
+  }
+}
+
+/* =====================
    GALLERY — hover zoom on native gallery blocks
 ===================== */
 .gallery-grid-item img {
