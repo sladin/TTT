@@ -1,0 +1,147 @@
+<!--
+  Third Time Together — Order CTA Section
+  ========================================
+  Paste into a CODE BLOCK after the photo grid block.
+-->
+<style>
+  .ttt-order {
+    background: #EDEAD9;
+    padding: 5rem 2rem;
+    border-top: 1px solid rgba(15,14,10,0.1);
+  }
+
+  .ttt-order-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .ttt-order-label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.3vw, 12px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #D97BAB;
+    margin-bottom: 0.75rem;
+  }
+
+  .ttt-order-heading {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1;
+    margin: 0 0 1rem;
+    color: #0F0E0A;
+  }
+
+  .ttt-order-body {
+    color: #8C8476;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: clamp(13px, 1.6vw, 15px);
+    line-height: 1.7;
+    margin: 0 0 1.5rem;
+    max-width: 400px;
+  }
+
+  .ttt-order-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.75rem;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: clamp(12px, 1.5vw, 14px);
+    font-weight: 700;
+    background: #0F0E0A;
+    color: #EDEAD9;
+    border: 2px solid #0F0E0A;
+    text-decoration: none;
+    min-height: 44px;
+    transition: all 0.2s;
+  }
+  .ttt-order-btn:hover {
+    background: transparent;
+    color: #0F0E0A;
+  }
+
+  .ttt-order-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ttt-order-card {
+    display: block;
+    border: 1.5px solid #0F0E0A;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: #0F0E0A;
+    transition: all 0.2s ease;
+  }
+  .ttt-order-card:hover {
+    background: #0F0E0A;
+    color: #EDEAD9;
+  }
+  .ttt-order-card:hover .ttt-card-sub { color: rgba(237,234,217,0.65); }
+  .ttt-order-card:hover .ttt-card-arrow { transform: translateX(4px); }
+
+  .ttt-card-title {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.8vw, 15px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+  }
+
+  .ttt-card-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .ttt-card-sub {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: clamp(11px, 1.3vw, 12px);
+    color: #8C8476;
+    transition: color 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    .ttt-order-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
+
+<div class="ttt-order">
+  <div class="ttt-order-inner">
+    <div>
+      <span class="ttt-order-label">Order Online</span>
+      <h2 class="ttt-order-heading">Ready to eat?</h2>
+      <p class="ttt-order-body">Order pickup or delivery straight from us — fresh, made from scratch, and worth the wait.</p>
+      <a href="/menu" class="ttt-order-btn">Browse the Full Menu →</a>
+    </div>
+    <div class="ttt-order-links">
+      <!-- Replace # with your Square pickup URL -->
+      <a href="#" class="ttt-order-card">
+        <div class="ttt-card-title">
+          Order Pickup
+          <span class="ttt-card-arrow">→</span>
+        </div>
+        <div class="ttt-card-sub">Ready in minutes · 399 Binney St</div>
+      </a>
+      <!-- Replace # with your Square delivery URL -->
+      <a href="#" class="ttt-order-card">
+        <div class="ttt-card-title">
+          Order Delivery
+          <span class="ttt-card-arrow">→</span>
+        </div>
+        <div class="ttt-card-sub">Delivered to your door</div>
+      </a>
+    </div>
+  </div>
+</div>
