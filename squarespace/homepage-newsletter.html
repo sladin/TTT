@@ -7,7 +7,9 @@
   .ttt-nl {
     background: #0F0E0A;
     color: #EDEAD9;
-    padding: 5rem 2rem;
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   .ttt-nl-inner {
@@ -22,11 +24,13 @@
   .ttt-nl-label {
     display: block;
     font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.3vw, 12px);
+    font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: #D97BAB;
     margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: visible;
   }
 
   .ttt-nl-heading {
@@ -47,74 +51,53 @@
     margin: 0;
   }
 
-  .ttt-nl-fields {
+  .ttt-nl-cta {
     display: flex;
-    gap: 0;
-    margin-bottom: 0.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
-
-  .ttt-nl-input {
-    flex: 1;
-    padding: 0.85rem 1rem;
-    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
-    font-size: clamp(13px, 1.5vw, 14px);
-    background: rgba(255,255,255,0.08);
-    border: 1.5px solid rgba(237,234,217,0.3);
-    border-right: none;
-    color: #EDEAD9;
-    outline: none;
-    min-height: 44px;
-    -webkit-appearance: none;
-  }
-
-  .ttt-nl-input::placeholder { color: rgba(237,234,217,0.4); }
-  .ttt-nl-input:focus { border-color: #D97BAB; }
-
-  .ttt-nl-btn {
-    padding: 0.85rem 1.5rem;
-    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
-    font-weight: 700;
-    font-size: clamp(12px, 1.4vw, 14px);
-    background: #D97BAB;
-    color: #fff;
-    border: 1.5px solid #D97BAB;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s;
-    min-height: 44px;
-  }
-
-  .ttt-nl-btn:hover { background: #c46a99; border-color: #c46a99; }
 
   .ttt-nl-signup {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2rem;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    background: #D97BAB;
+    color: #fff;
+    border: 1.5px solid #D97BAB;
     text-decoration: none;
-    margin-bottom: 0.75rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    min-height: 44px;
+    box-sizing: border-box;
   }
+
+  .ttt-nl-signup:hover { background: #c46a99; border-color: #c46a99; color: #fff; }
 
   .ttt-nl-fine {
     font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.2vw, 11px);
+    font-size: 10px;
     color: rgba(237,234,217,0.35);
     margin: 0;
-  }
-
-  .ttt-nl-success {
-    display: none;
-    color: #D97BAB;
-    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
-    font-style: italic;
-    font-size: clamp(14px, 1.6vw, 16px);
-    margin-top: 1rem;
+    line-height: 1.5;
   }
 
   @media (max-width: 768px) {
-    .ttt-nl-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
-    .ttt-nl-fields { flex-direction: column; }
-    .ttt-nl-input  { border-right: 1.5px solid rgba(237,234,217,0.3); border-bottom: none; }
-    .ttt-nl-btn    { width: 100%; }
-    .ttt-nl-signup { display: block; width: 100%; text-align: center; justify-content: center; }
+    .ttt-nl { padding: 3rem 1.5rem; }
+    .ttt-nl-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .ttt-nl-cta { align-items: stretch; }
+    .ttt-nl-signup {
+      width: 100%;
+      text-align: center;
+    }
   }
 </style>
 
@@ -125,9 +108,9 @@
       <h2 class="ttt-nl-heading">New flavors. New dishes.<br>Be the first to know.</h2>
       <p class="ttt-nl-body">We send occasional updates — new ice cream flavors, seasonal menu changes, events. No spam, ever.</p>
     </div>
-    <div>
+    <div class="ttt-nl-cta">
       <a href="https://squareup.com/customer-programs/enroll/nStxDe598ZRg?utm_medium=copied-link&utm_source=online"
-         class="ttt-nl-btn ttt-nl-signup"
+         class="ttt-nl-signup"
          target="_blank"
          rel="noopener">
         Sign Up →
