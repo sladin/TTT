@@ -54,25 +54,54 @@ p, li, a, label, input, button, textarea {
 }
 
 /* =====================
-   CODE BLOCKS — remove gaps only here, nowhere else
+   REMOVE GAPS BETWEEN SECTIONS
+   Only targets page sections and code block wrappers.
+   Footer is explicitly protected below.
 ===================== */
+
+/* Remove section-level padding and borders */
+.page-section:not(#footer-sections .page-section) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Remove code block wrapper padding */
+.sqs-block-code,
 .sqs-block-code .sqs-block-content {
   padding: 0 !important;
   margin: 0 !important;
 }
 
+/* Remove row/col gaps inside sections */
+.sqs-layout:not(#footer-sections .sqs-layout),
+.sqs-row:not(#footer-sections .sqs-row) {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 /* =====================
-   PROTECT FOOTER — restore any values the above might affect
+   PROTECT FOOTER — keep all footer spacing intact
 ===================== */
-#footer-sections .sqs-block-content,
+#footer-sections,
+#footer-sections .page-section,
 #footer-sections .content-wrapper,
-#footer-sections .fe-block,
+#footer-sections .sqs-layout,
+#footer-sections .sqs-row,
+#footer-sections .sqs-block,
+#footer-sections .sqs-block-content,
+#footer-sections .fe-block {
+  padding: revert !important;
+  margin: revert !important;
+  border: revert !important;
+}
+
 #footer-sections p,
 #footer-sections h1,
 #footer-sections h2,
-#footer-sections h3 {
-  padding: revert !important;
-  margin: revert !important;
+#footer-sections h3,
+#footer-sections address {
   font-family: 'Goldplay', 'Poppins', system-ui, sans-serif !important;
 }
 
