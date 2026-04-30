@@ -1,0 +1,155 @@
+<!--
+  Third Time Together — Newsletter Section
+  =========================================
+  Paste into a CODE BLOCK. Set section padding to 0.
+-->
+<style>
+  .ttt-nl {
+    background: #0F0E0A;
+    color: #EDEAD9;
+    padding: 5rem 2rem;
+  }
+
+  .ttt-nl-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .ttt-nl-label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.3vw, 12px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #D97BAB;
+    margin-bottom: 1rem;
+  }
+
+  .ttt-nl-heading {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+    color: #EDEAD9;
+  }
+
+  .ttt-nl-body {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    color: rgba(237,234,217,0.65);
+    font-size: clamp(13px, 1.5vw, 15px);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .ttt-nl-fields {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .ttt-nl-input {
+    flex: 1;
+    padding: 0.85rem 1rem;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: clamp(13px, 1.5vw, 14px);
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(237,234,217,0.3);
+    border-right: none;
+    color: #EDEAD9;
+    outline: none;
+    min-height: 44px;
+    -webkit-appearance: none;
+  }
+
+  .ttt-nl-input::placeholder { color: rgba(237,234,217,0.4); }
+  .ttt-nl-input:focus { border-color: #D97BAB; }
+
+  .ttt-nl-btn {
+    padding: 0.85rem 1.5rem;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(12px, 1.4vw, 14px);
+    background: #D97BAB;
+    color: #fff;
+    border: 1.5px solid #D97BAB;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    min-height: 44px;
+  }
+
+  .ttt-nl-btn:hover { background: #c46a99; border-color: #c46a99; }
+
+  .ttt-nl-fine {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.2vw, 11px);
+    color: rgba(237,234,217,0.35);
+    margin: 0;
+  }
+
+  .ttt-nl-success {
+    display: none;
+    color: #D97BAB;
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-style: italic;
+    font-size: clamp(14px, 1.6vw, 16px);
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .ttt-nl-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
+    .ttt-nl-fields { flex-direction: column; }
+    .ttt-nl-input  { border-right: 1.5px solid rgba(237,234,217,0.3); border-bottom: none; }
+    .ttt-nl-btn    { width: 100%; }
+  }
+</style>
+
+<div class="ttt-nl" id="newsletter">
+  <div class="ttt-nl-inner">
+    <div>
+      <span class="ttt-nl-label">Stay in the loop</span>
+      <h2 class="ttt-nl-heading">New flavors. New dishes.<br>Be the first to know.</h2>
+      <p class="ttt-nl-body">We send occasional updates — new ice cream flavors, seasonal menu changes, events. No spam, ever.</p>
+    </div>
+    <div>
+      <form class="ttt-nl-fields" id="tttNlForm" action="#" method="post" novalidate>
+        <input
+          class="ttt-nl-input"
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          aria-label="Email address"
+          autocomplete="email"
+        >
+        <button type="submit" class="ttt-nl-btn">Subscribe →</button>
+      </form>
+      <p class="ttt-nl-fine">We'll never share your email. Unsubscribe anytime.</p>
+      <p class="ttt-nl-success" id="tttNlSuccess">Thanks — you're on the list.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* Basic client-side validation + success state.
+     Wire up the form action to Mailchimp, Klaviyo, or
+     Squarespace Email Campaigns when ready. */
+  document.getElementById('tttNlForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = this.querySelector('.ttt-nl-input');
+    if (!input.value || !input.value.includes('@')) {
+      input.focus();
+      return;
+    }
+    this.style.display = 'none';
+    document.querySelector('.ttt-nl-fine').style.display = 'none';
+    document.getElementById('tttNlSuccess').style.display = 'block';
+    /* TODO: replace with actual form submission to your email provider */
+  });
+</script>
