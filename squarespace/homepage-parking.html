@@ -1,0 +1,154 @@
+<!--
+  Third Time Together — Getting Here / Parking Section
+  ======================================================
+  Paste into a CODE BLOCK wherever you want this section.
+-->
+<style>
+  .ttt-parking {
+    background: #0F0E0A;
+    color: #EDEAD9;
+    padding: 4rem 2rem;
+  }
+
+  .ttt-parking-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .ttt-parking-label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.3vw, 12px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #D97BAB;
+    margin-bottom: 1rem;
+  }
+
+  .ttt-parking-heading {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.1;
+    margin: 0 0 2.5rem;
+    color: #EDEAD9;
+  }
+
+  .ttt-parking-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .ttt-parking-card {
+    border: 1px solid rgba(237,234,217,0.15);
+    padding: 1.5rem;
+  }
+
+  .ttt-parking-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .ttt-parking-card-title {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.6vw, 15px);
+    color: #EDEAD9;
+    margin-bottom: 0.5rem;
+  }
+
+  .ttt-parking-card-body {
+    font-family: 'Goldplay', 'Poppins', system-ui, sans-serif;
+    font-size: clamp(12px, 1.4vw, 13px);
+    color: rgba(237,234,217,0.6);
+    line-height: 1.65;
+  }
+
+  .ttt-parking-card-body a {
+    color: #D97BAB;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .ttt-parking-note {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(237,234,217,0.1);
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(11px, 1.3vw, 12px);
+    color: rgba(237,234,217,0.4);
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 768px) {
+    .ttt-parking-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="ttt-parking">
+  <div class="ttt-parking-inner">
+    <span class="ttt-parking-label">Getting Here</span>
+    <h2 class="ttt-parking-heading">Finding us is the easy part.</h2>
+
+    <div class="ttt-parking-grid">
+
+      <div class="ttt-parking-card">
+        <span class="ttt-parking-icon">🅿️</span>
+        <div class="ttt-parking-card-title">Garage Parking — We Validate</div>
+        <div class="ttt-parking-card-body">
+          Park at <strong>One Kendall Square Garage</strong> and we'll validate your ticket. Ask any staff member when you visit.
+        </div>
+      </div>
+
+      <div class="ttt-parking-card">
+        <span class="ttt-parking-icon">🚗</span>
+        <div class="ttt-parking-card-title">Street Parking</div>
+        <div class="ttt-parking-card-body">
+          Metered street parking available on Binney St and surrounding streets in Kendall Square.
+        </div>
+      </div>
+
+      <div class="ttt-parking-card">
+        <span class="ttt-parking-icon">🚇</span>
+        <div class="ttt-parking-card-title">MBTA Red Line</div>
+        <div class="ttt-parking-card-body">
+          Kendall/MIT stop — 5 minute walk down Binney St. We're at 399 Binney.
+        </div>
+      </div>
+
+      <div class="ttt-parking-card">
+        <span class="ttt-parking-icon">🚲</span>
+        <div class="ttt-parking-card-title">Bike & Bluebikes</div>
+        <div class="ttt-parking-card-body">
+          Bike racks out front. Bluebikes station steps away at Kendall Square.
+        </div>
+      </div>
+
+      <div class="ttt-parking-card">
+        <span class="ttt-parking-icon">🚕</span>
+        <div class="ttt-parking-card-title">Rideshare</div>
+        <div class="ttt-parking-card-body">
+          Easy Uber and Lyft drop-off directly in front. Enter <strong>399 Binney St, Cambridge</strong> in your app.
+        </div>
+      </div>
+
+      <div class="ttt-parking-card">
+        <span class="ttt-parking-icon">📍</span>
+        <div class="ttt-parking-card-title">Address</div>
+        <div class="ttt-parking-card-body">
+          399 Binney Street<br>
+          Cambridge, MA 02139<br>
+          Kendall Square
+        </div>
+      </div>
+
+    </div>
+
+    <p class="ttt-parking-note">
+      Questions? DM us @thirdtimetogether on Instagram.
+    </p>
+  </div>
+</div>
